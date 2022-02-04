@@ -57,10 +57,19 @@ nobel_living_science <- nobel_living %>%
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+Most living nobel laureates were based in the US when they won their prize: given the bar plot, this appears to be true.
+
+```{r bar-plot}
+
+#nobel_living_science is data for currently living nobel prize winners in #one of the sciences (physics, medicine, chem, econ) who are categorized #as winning while living in the US or elsewhere
+
+ggplot(data = nobel_living_science, aes( x = country_us)) +
+  geom_bar() +
+  facet_wrap(~category) +
+  coord_flip()
+
+```
+
 
 ### Exercise 4
 
