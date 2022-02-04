@@ -28,6 +28,8 @@ nobel <- read_csv("data/nobel.csv")
     ##                           is.na("died_date")])
 ```
 
+### take 2 for Ex 1
+
 ``` r
 nobel_living <- nobel %>% 
   filter(!is.na(country),
@@ -53,8 +55,8 @@ Most living nobel laureates were based in the US when they won their
 prize: given the bar plot, this appears to be true.
 
 #nobel_living_science is data for currently living nobel prize winners
-in #one of the sciences (physics, medicine, chem, econ) who are
-categorized #as winning while living in the US or elsewhere
+in one of the sciences (physics, medicine, chem, econ) who are
+categorized as winning the prize while living in the US or elsewhere
 
 ``` r
 ggplot(data = nobel_living_science, aes( x = country_us)) +
@@ -110,8 +112,31 @@ ggplot(data = nobel_living_science, aes( x = country_us ,
   coord_flip()
 ```
 
-![](lab-03_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](lab-03_files/figure-gfm/bar-plot-prize-vs-born-1.png)<!-- -->
 
 ### Exercise 6
 
-…
+Most scientists who immigrate are from Germany or the United Kingdom.
+
+``` r
+nobel_living_science %>% 
+  filter(born_country != "USA" ,
+         country == "USA") %>% 
+  count(born_country) %>% 
+  arrange(desc(n))
+```
+
+    ## # A tibble: 21 × 2
+    ##    born_country       n
+    ##    <chr>          <int>
+    ##  1 Germany            7
+    ##  2 United Kingdom     7
+    ##  3 China              5
+    ##  4 Canada             4
+    ##  5 Japan              3
+    ##  6 Australia          2
+    ##  7 Israel             2
+    ##  8 Norway             2
+    ##  9 Austria            1
+    ## 10 Finland            1
+    ## # … with 11 more rows
