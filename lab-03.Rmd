@@ -59,9 +59,9 @@ nobel_living_science <- nobel_living %>%
 
 Most living nobel laureates were based in the US when they won their prize: given the bar plot, this appears to be true.
 
-```{r bar-plot}
-
 #nobel_living_science is data for currently living nobel prize winners in #one of the sciences (physics, medicine, chem, econ) who are categorized #as winning while living in the US or elsewhere
+
+```{r bar-plot}
 
 ggplot(data = nobel_living_science, aes( x = country_us)) +
   geom_bar() +
@@ -73,11 +73,35 @@ ggplot(data = nobel_living_science, aes( x = country_us)) +
 
 ### Exercise 4
 
-...
+105 were born in the USA, 123 were born elsewhere.
+
+```{r}
+
+nobel_living_science <- nobel_living_science %>% 
+  mutate(
+    born_country_us = if_else(born_country == "USA" , "USA" , "Other")
+  )
+
+nobel_living_science %>% 
+  filter(born_country_us == "Other")
+
+
+
+```
+
 
 ### Exercise 5
 
-...
+```{r}
+
+ggplot(data = nobel_living_science, aes( x = country_us , 
+                                         fill = born_country_us)) +
+  geom_bar( alpha = .8) +
+  facet_wrap(~category) +
+  coord_flip()
+
+```
+
 
 ### Exercise 6
 
